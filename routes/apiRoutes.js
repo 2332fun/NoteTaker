@@ -17,11 +17,14 @@ router.post('/notes', (req, res) => {
     .catch((error) => res.status(500).json(error));
 })
 //DELETE Route For Deleting Notes
-router.delete('/notes', (req, res) => {
+router.delete('/notes/:id', (req, res) => {
     store.deleteNote(req.params.id).then(() => {
         res.json({ok:true});
     })
-    .catch((error) => res.status(500).json(error));
+    .catch((error) => {
+        console.log(error);
+        res.status(500).json(error)
+    });
 })
 
 module.exports = router;
